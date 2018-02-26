@@ -6,22 +6,22 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    if @item
-      render json: @item
+    @user = User.create(user_params)
+    if @user
+      render json: @user
     else
-      render json: @item.errors.full_messages
+      render json: @user.errors.full_messages
     end
   end
 
   def update
-    @item = Item.update(item_params)
-    render json: @item
+    @user = User.update(user_params)
+    render json: @user
   end
 
   def destroy
-    @item = Item.find_by(item_params)
-    @item.destroy
+    @user = User.find_by(user_params)
+    @user.destroy
   end
 
   def signup
@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  def item_params
-    params.require(:item).permit(:username, :password, :password_digest)
+  def user_params
+    params.require(:user).permit(:username, :password, :password_digest)
   end
 end
