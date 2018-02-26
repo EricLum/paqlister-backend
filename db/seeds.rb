@@ -5,6 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
+User.destroy_all
+Manifest.destroy_all
+Item.destroy_all
+ManifestItem.destroy_all
+
 user = User.create(username: 'charlie' , password: 'monkeybusiness')
-manifest = Manifest.create(title: 'my title list', user: user)
-item = Item.create(name: 'bottle')
+20.times do
+  Manifest.create(title: Faker::Lorem.word, limit: 20, description: Faker::Lorem.sentence, user_id: User.last.id)
+end
+
+Manifest.all.each do |manifest|
+  5.times do
+    item = Item.create(name: Faker::Lorem.word, description: Faker::Lorem.sentence, price: 5.00, brand: Faker::Lorem.word)
+    manifest.items << item
+  end
+end
