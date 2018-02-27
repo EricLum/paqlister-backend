@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :manifests, :items, :manifest_items, :users
         post '/manifests/getItems', to: 'manifests#getManifestItems'
+        post '/manifestitems/getManifestItemsPositions', to: 'manifest_items#getManifestItemsPositions'
         post '/login', to: 'users#login'
         post '/signup', to: 'users#signup'
     end

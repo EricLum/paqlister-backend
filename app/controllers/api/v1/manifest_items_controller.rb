@@ -23,9 +23,16 @@ class Api::V1::ManifestItemsController < ApplicationController
     @manifest_items.destroy
   end
 
+  def getManifestItemsPositions
+    @manifest_items = ManifestItem.find_by(manifest_id: params[:manifestId])
+    if @manifest_items
+      render json: @manifest_items
+    end
+  end
+
   private
 
   def manifest_items_params
-    params.require(:manifest_item).permit(:manifest_id, :item_id)
+    params.require(:manifest_item).permit(:manifest_id, :item_id, :left_position, :top_position)
   end
 end
