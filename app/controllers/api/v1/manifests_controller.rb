@@ -24,6 +24,13 @@ class Api::V1::ManifestsController < ApplicationController
     @manifests.destroy
   end
 
+  def getManifestItems
+    @manifest = Manifest.find(params[:manifestId])
+    if @manifest
+      render json: @manifest.items
+    end
+  end
+
   private
 
   def manifests_params

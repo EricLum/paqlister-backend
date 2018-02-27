@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :manifests, :items, :manifest_items, :users
-      post '/login', to: 'users#login'
-      post '/signup', to: 'users#signup'
+        post '/manifests/getItems', to: 'manifests#getManifestItems'
+        post '/login', to: 'users#login'
+        post '/signup', to: 'users#signup'
     end
   end
 end
