@@ -14,8 +14,12 @@ class Api::V1::ManifestItemsController < ApplicationController
   end
 
   def update
-    @manifest_items = ManifestItems.update(manifest_items_params)
-    render json: @manifest_items
+
+    @manifest_item = ManifestItem.find_by(manifest_id: params[:manifestItemId], item_id: params[:itemId])
+    
+    @manifest_item.update(left_position: params[:left_position], top_position: params[:top_position])
+
+    render json: @manifest_item
   end
 
   def destroy
@@ -24,7 +28,7 @@ class Api::V1::ManifestItemsController < ApplicationController
   end
 
   def getManifestItemsPositions
-    @manifest_items = ManifestItem.find_by(manifest_id: params[:manifestId])
+    @manifest_items = ManifestItem.where(manifest_id: params[:manifestId])
     if @manifest_items
       render json: @manifest_items
     end
