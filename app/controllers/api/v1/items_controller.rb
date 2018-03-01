@@ -6,8 +6,11 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    if @item
+    @item = Item.create(name: params[:name], description: params[:description], price: params[:price], brand: params[:brand],
+    image: params[:image])
+    if @item.save
+      @manifest = Manifest.find(params[:manifestId])
+      @manifest.items << @item
       render json: @item
     else
       render json: @item.errors.full_messages

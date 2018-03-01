@@ -22,12 +22,12 @@ images = [
 ]
 
 user = User.create(username: 'charlie' , password: 'monkeybusiness')
-20.times do
+10.times do
   Manifest.create(title: Faker::Lorem.word, limit: 20, description: Faker::Lorem.sentence, user_id: User.last.id)
 end
-
+ 
 Manifest.all.each do |manifest|
-  5.times do
+  10.times do
     item = Item.create(name: Faker::Lorem.word, description: Faker::Lorem.sentence, price: 5.00, brand: Faker::Lorem.word, image: images.sample)
     manifest.items << item
   end
