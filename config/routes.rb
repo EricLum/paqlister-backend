@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       resources :manifests, :items, :manifest_items, :users
         post '/manifests/getItems', to: 'manifests#getManifestItems'
         post '/manifestitems/getManifestItemsPositions', to: 'manifest_items#getManifestItemsPositions'
-        post '/login', to: 'users#login'
-        post '/signup', to: 'users#signup'
+        post '/users/login', to: 'auth#login'
+        post '/users/signup', to: 'auth#signup'
     end
   end
 end
