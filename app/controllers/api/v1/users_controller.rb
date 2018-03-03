@@ -24,14 +24,6 @@ class Api::V1::UsersController < ApplicationController
     @user.destroy
   end
 
-  def signup
-
-  end
-
-  def login
-
-  end
-
   private
 
   def user_params
