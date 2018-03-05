@@ -12,7 +12,7 @@ class Api::V1::AuthController < ApplicationController
 
   def currentUser
     token = request.headers['Authorization']
-    user = User.find(token)
+    user = User.find(token_user_id)
     if user
       render json: {id: user.id, username: user.username }
     else
@@ -22,7 +22,11 @@ class Api::V1::AuthController < ApplicationController
 
   def login
     user = User.find_by(username: params[:username])
-    if user && user.authenticate(password[:password])
-      issue_token({id: user.id})
+    if user && user.authenticate(params[:password])
+      render json: {token: issue_token({id: user.id}),
+                    user: user}
+    else
+      render json: {error: 'No user found'}
     end
+  end
 end
