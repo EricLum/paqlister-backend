@@ -36,6 +36,20 @@ class Api::V1::ManifestsController < ApplicationController
     end
   end
 
+  def clone
+    byebug
+    @manifest = Manifest.find(params[:manifestId])
+    if @manifest
+      @clonedManifest = @manifest.dup
+      @clonedManifest.user_id = current_user.id
+      current_user.manifests << @clonedManifest
+      @clonedManifest.items = @manifest.items
+      render json: @clonedManifest
+    else
+      render json: {error: 'what the fuck is this'}
+    end
+  end
+
   private
 
   def manifests_params
