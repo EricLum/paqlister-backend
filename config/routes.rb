@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         post '/manifestitems/getManifestItemsPositions', to: 'manifest_items#getManifestItemsPositions'
         post '/login', to: 'auth#login'
         post '/users/signup', to: 'auth#signup'
+        post '/mymanifests', to: 'manifests#mymanifests'
         get '/authorize', to: 'auth#currentUser'
     end
   end

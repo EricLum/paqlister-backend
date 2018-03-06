@@ -5,6 +5,11 @@ class Api::V1::ManifestsController < ApplicationController
     render json: @manifests
   end
 
+  def mymanifests
+    @user = current_user
+    render json: @user.manifests
+  end
+
   def create
     @manifests = Manifest.create(manifests_params)
     if @manifests
