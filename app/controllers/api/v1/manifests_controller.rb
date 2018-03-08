@@ -37,7 +37,6 @@ class Api::V1::ManifestsController < ApplicationController
   end
 
   def clone
-    byebug
     @manifest = Manifest.find(params[:manifestId])
     if @manifest
       @clonedManifest = @manifest.dup

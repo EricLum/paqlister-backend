@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user
-      render json: @user
+      render json: {user: @user, token: issue_token({id: @user.id})}
     else
       render json: @user.errors.full_messages
     end
